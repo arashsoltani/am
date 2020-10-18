@@ -33,3 +33,14 @@ Route::get('/quick-search', 'PagesController@quickSearch')->name('quick-search')
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/login', function(){
+    return view('users.login');
+});
+
+Route::resource('/register', 'UserController');
+
+
+
+
+
