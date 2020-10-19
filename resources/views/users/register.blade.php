@@ -58,8 +58,10 @@
 
                     <div class="login-form login-signup pt-11">
                         <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" id="kt_login_signup_form">
+                        <form class="form" method="POST" action="{{route('register.store')}}" novalidate="novalidate" id="kt_login_signup_form">
                             <!--begin::Title-->
+                            @csrf
+                            @method('POST')
                             <div class="text-center pb-8">
                                 <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">ثبت نام</h2>
                                 <p class="text-muted font-weight-bold font-size-h4">برای ایجاد حساب کاربری ، جزئیات خود را وارد کنید</p>
@@ -70,12 +72,17 @@
                             </div>
 
                             <div class="form-group">
+                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="ناو خانوادگی" name="last_name" autocomplete="off"/>
+                            </div>
+
+
+                            <div class="form-group">
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="نام پدر" name="father_name" autocomplete="off"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="m_or_f">جنسیت</label>
-                                <select class="form-control" id="exampleانتخاب1">
+                                <select class="form-control" id="m_or_f">
                                     <option>مرد</option>
                                     <option>زن</option>
                                 </select>
