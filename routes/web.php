@@ -40,7 +40,12 @@ Route::get('/login', function(){
     return view('users.login');
 });
 
-Route::resource('/register', 'UserController');
+//Route::resource('/register', 'UserController');
+
+Route::get('/register/create', 'UserController@create');
+Route::post('registeration', 'UserController@store')->name('registration');
+
+Route::get('/index', 'PagesController@index');
 
 
 

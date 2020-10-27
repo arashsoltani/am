@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html direction="rtl" dir="rtl" style="direction: rtl  lang="{{ str_replace('_', '-', app()->getLocale()) }}" {{ Metronic::printAttrs('html') }} {{ Metronic::printClasses('html') }}>
+<html direction="rtl" dir="rtl" lang="fa" style="direction: rtl  lang="{{ str_replace('_', '-', app()->getLocale()) }}" {{ Metronic::printAttrs('html') }} {{ Metronic::printClasses('html') }}>
 <head>
     <meta charset="utf-8"/>
 
@@ -57,8 +57,20 @@
                     <div class="login-form login-signin py-11">
 
                     <div class="login-form login-signup pt-11">
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                    @endif
+
                         <!--begin::Form-->
-                        <form class="form" method="POST" action="{{route('register.store')}}" novalidate="novalidate" id="kt_login_signup_form">
+                        <form class="form" method="POST" action="{{route('registration')}}" novalidate="novalidate" id="kt_login_signup_form">
                             <!--begin::Title-->
                             @csrf
                             @method('POST')
@@ -68,7 +80,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="نام و ناو خانوادگی" name="name" autocomplete="off"/>
+                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="نام" name="name" autocomplete="off"/>
                             </div>
 
                             <div class="form-group">
@@ -82,9 +94,10 @@
 
                             <div class="form-group">
                                 <label for="m_or_f">جنسیت</label>
-                                <select class="form-control" id="m_or_f">
-                                    <option>مرد</option>
-                                    <option>زن</option>
+                                <select class="form-control" name="m_or_f" id="m_or_f">
+                                    <option value="0" selected disabled>انتخاب جنسیت</option>
+                                    <option value="مرد">مرد</option>
+                                    <option value="زن">زن</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -103,12 +116,9 @@
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="password" placeholder="کلمه عبور" name="password" autocomplete="off"/>
                             </div>
 
-                            <div class="form-group">
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="password" placeholder="تکرار کلمه عبور" name="cpassword" autocomplete="off"/>
-                            </div>
 
                             <div class="form-group d-flex flex-wrap flex-center pb-lg-0 pb-3">
-                                <button type="button" id="kt_login_signup_submit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mx-4">ارسال</button>
+                                <button type="submit" id="kt_login_signup_submit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mx-4">ارسال</button>
                                 <button type="button" id="kt_login_signup_cancel" class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mx-4">لغو</button>
                             </div>
 
@@ -119,6 +129,7 @@
                     </div>
 
                 </div>
+
 
 
 
@@ -165,3 +176,4 @@
 @yield('scripts')
 </body>
 </html>
+
